@@ -1,0 +1,2 @@
+class NapSpacesController < ApplicationController
+end
