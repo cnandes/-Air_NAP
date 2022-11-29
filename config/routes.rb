@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
+  root to: "nap_spaces#home"
 
-  get "/nap_space", to: "nap_spaces#home"
-  get "/nap_space/index", to: "nap_spaces#index"
+  resources :nap_spaces
+  # get "/nap_space", to: "nap_spaces#home"
+  # get "/nap_space/index", to: "nap_spaces#index"
+  # get "/nap_space/index/show", to: "nap_spaces#show"
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
