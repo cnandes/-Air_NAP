@@ -25,12 +25,11 @@ class NapSpacesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   private
 
   def nap_space_params
-    params.require(:nap_space).permit(:description, :address, :cost_per_hr)
+    params.require(:nap_space).permit(:description, :address, :cost_per_hr, :image_url)
   end
 end
