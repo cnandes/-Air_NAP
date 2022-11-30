@@ -1,0 +1,67 @@
+<body cz-shortcut-listen="true">
+  <!-- Navbar Start -->
+  <header id="topnav" class="defaultscroll sticky dark">
+    <div class="container">
+      <!-- Logo container-->
+      <a class="logo" href="#">
+        <img style="height:40px" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png">
+      </a>
+      <!-- End Logo container-->
+      <div class="menu-extras">
+        <div class="menu-item">
+          <!-- Mobile menu toggle-->
+          <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+            <div class="lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </a>
+          <!-- End mobile menu toggle-->
+        </div>
+      </div>
+      <%# /* ------------------------ profile and logout icons ------------------------ */ %>
+      <ul class="buy-button list-inline mb-0">
+        <%# /* --------------------------------- profile -------------------------------- */ %>
+        <li class="list-inline-item mb-0">
+          <div class="dropdown dropdown-primary">
+            <button type="button" class=" btn btn-icon btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="material-icons">&#xE87C;</span></button>
+            <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-2 py-2" style="width: 100px;">
+              <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 01]'.html_safe, "#", class: "dropdown-item text-dark" %>
+              <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 02]'.html_safe, "#", class: "dropdown-item text-dark" %>
+              <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 03]'.html_safe, "#", class: "dropdown-item text-dark" %>
+            </div>
+          </div>
+        </li>
+        <%# /* --------------------------------- logout --------------------------------- */ %>
+        <li class="list-inline-item mb-0">
+          <span class="material-icons btn btn-icon btn-primary" >&#xe9ba;</span>
+        </li>
+      </ul>
+      <!--end login button-->
+      <div id="navigation">
+        <!-- Navigation Menu-->
+        <ul class="navigation-menu ">
+          <%# /* ---------------------------------- home ---------------------------------- */ %>
+          <li> <%= link_to '<i class="fas fa-home fa-sm me-1"></i> home'.html_safe, "#", class: "sub-menu-item" %></li>
+          <%# /* -------------------------------- messages -------------------------------- */ %>
+          <li> <%= link_to '<i class="fas fa-comment-alt fa-sm me-1"></i> messages'.html_safe, "#", class: "sub-menu-item" %></li>
+          <%# /* -------------------------- other drop down list -------------------------- */ %>
+          <li class="has-submenu parent-menu-item">
+            <a href="javascript:void(0)"><i class="fas fa-couch fa-sm me-1"></i> Other</a><span class="menu-arrow"></span>
+            <%# /* ----------------------------- other sub menus ---------------------------- */ %>
+            <ul class="submenu">
+              <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> [option 01]'.html_safe, "#", class: "sub-menu-item" %></li>
+              <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> [option 02]'.html_safe, "#", class: "sub-menu-item" %></li>
+            </ul>
+          </li>
+        </ul>
+        <!--end navigation menu-->
+      </div>
+      <!--end navigation-->
+    </div>
+    <!--end container-->
+  </header>
+  <!--end header-->
+  <!-- Navbar End -->
