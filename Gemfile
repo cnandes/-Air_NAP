@@ -28,6 +28,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem 'better_errors', '~> 2.9', '>= 2.9.1'
+gem 'htmlbeautifier'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap-dark.min.css" id="bootstrap-style" class="theme-opt" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/@iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
+    <!-- Style Css-->
+    <link href="assets/css/style-dark.min.css" id="color-opt" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   </head>
-
   <body>
-    <%= render "shared/navbar" %>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <%= render "shared/navbar2" %>
     <div class="container">
+      <br>
+      <br>
+      <br>
       <%= yield %>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
