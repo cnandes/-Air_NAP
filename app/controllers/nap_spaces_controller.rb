@@ -27,6 +27,12 @@ class NapSpacesController < ApplicationController
     end
   end
 
+  def destroy
+    @nap_space = NapSpace.find(params[:id])
+    @nap_space.destroy
+    redirect_to root_path, status: :see_other
+  end
+
   private
 
   def nap_space_params
