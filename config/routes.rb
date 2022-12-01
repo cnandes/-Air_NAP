@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "nap_spaces#home"
 
   resources :nap_spaces
+
+  resources :bookings, only: [:index, :show]
+
   # get "/nap_space", to: "nap_spaces#home"
   # get "/nap_space/index", to: "nap_spaces#index"
 
