@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  before_action :set_booking
+
   def confirm
     @booking.confirm if current_user == @booking.nap_space.user
   end
