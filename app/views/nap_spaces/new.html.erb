@@ -1,9 +1,3 @@
 <h1>New Nap Space</h1>
 
-<%= simple_form_for @nap_space do |f| %>
-  <%= f.input :description %>
-  <%= f.input :address %>
-  <%= f.input :cost_per_hr %>
-  <%= f.input :image_url %>
-  <%= f.submit %>
-<% end %>
+<%= render "form", nap_space: @nap_space %>

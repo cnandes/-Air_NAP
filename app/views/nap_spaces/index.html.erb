@@ -1,3 +1,14 @@
 <h1>This is NapSpace Index</h1>
+<p style="color: green"><%= notice %></p>
+
+
+<% @nap_spaces.each do |nap_space| %>
+  <%= nap_space.description %><br />
+  <%= nap_space.address %>
+  <p>
+    <%= link_to "Show Time", nap_space_path(nap_space) %>
+    <hr>
+  </p>
+<% end %>
 
 <%= link_to "home", root_path %>
