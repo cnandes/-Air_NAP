@@ -3,9 +3,11 @@
 
 
 <% @nap_spaces.each do |nap_space| %>
-  <%= render nap_space %>
+  <%= nap_space.description %><br />
+  <%= nap_space.address %>
   <p>
-    <% link_to "Show Time", nap_space%>
+    <%= link_to "Show Time", nap_space_path(nap_space) %>
+    <hr>
   </p>
 <% end %>
 
