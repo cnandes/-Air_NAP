@@ -1,5 +1,6 @@
 class NapSpacesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
+  before_action :set_nap_space, only: %i[show edit update destroy]
   def home
   end
 
@@ -8,7 +9,6 @@ class NapSpacesController < ApplicationController
   end
 
   def show
-    # @nap_space = NapSpace.find(params[:id])
   end
 
   def new
@@ -27,7 +27,27 @@ class NapSpacesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @nap_space.update(nap_space_params)
+      redirect_to @nap_space, notice: "NapSpace was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @nap_space.destroy
+    redirect_to root_path, status: :see_other
+  end
+
   private
+
+  def set_nap_space
+    @nap_space = NapSpace.find(params[:id])
+  end
 
   def nap_space_params
     params.require(:nap_space).permit(:description, :address, :cost_per_hr, :image_url)
