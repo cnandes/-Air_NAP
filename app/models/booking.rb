@@ -14,7 +14,7 @@ class Booking < ApplicationRecord
   end
 
   def cancel
-    change_confirmation_status('cancel')
+    change_confirmation_status('cancelled')
   end
 
   private
