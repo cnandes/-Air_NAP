@@ -24,15 +24,15 @@
       <% if user_signed_in? %>
         <ul class="buy-button list-inline mb-0">
           <%# /* --------------------------------- profile -------------------------------- */ %>
-          <li class="list-inline-item mb-0 navbar-heading">John Doe</li>
+          <li class="list-inline-item mb-0 navbar-heading"><%= current_user.name %></li>
           <li class="list-inline-item mb-0">
             <div class="dropdown dropdown-primary">
               <button type="button" class=" btn btn-icon btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="material-icons">&#xE87C;</span></button>
               <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-2 py-2" style="width: 100px;">
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 01]'.html_safe, "#", class: "dropdown-item text-dark" %>
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 02]'.html_safe, "#", class: "dropdown-item text-dark" %>
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 03]'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Bookings'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My NapSpaces'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Account'.html_safe, "#", class: "dropdown-item text-dark" %>
               </div>
             </div>
           </li>
