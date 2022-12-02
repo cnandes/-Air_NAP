@@ -1,6 +1,6 @@
 class NapSpacesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
-  before_action :set_nap_space, only: %i[show edit update]
+  before_action :set_nap_space, only: %i[show edit update destroy]
   def home
   end
 
@@ -9,6 +9,7 @@ class NapSpacesController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
   end
 
   def new
@@ -36,6 +37,11 @@ class NapSpacesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @nap_space.destroy
+    redirect_to root_path, status: :see_other
   end
 
   private

@@ -24,4 +24,8 @@ class BookingsController < ApplicationController
   def strong_params
     params.require(:booking).permit(:start_time, :end_time)
   end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 end

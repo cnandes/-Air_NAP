@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :nap_spaces do
     resources :bookings, only: %i[new create]
   end
-  resources :bookings, only: [:index]
+  resources :bookings, only: [:index, :show]
   # get "/nap_space", to: "nap_spaces#home"
   # get "/nap_space/index", to: "nap_spaces#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
