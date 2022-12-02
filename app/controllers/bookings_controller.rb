@@ -1,27 +1,29 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[confirm decline cancel]
 
-  def index
-    @bookings = Booking.where(user_id: current_user.id)
+  def new
+    @nap_space = NapSpace.find(params[:nap_space_id])
+    @booking = Booking.new
   end
 
-  def show
-    @nap_space = @booking.nap_space
-  end
-
-  def confirm
-    @booking.confirm if current_user == @booking.nap_space.user
-  end
-
-  def decline
-    @booking.decline if current_user == @booking.nap_space.user
-  end
-
-  def cancel
-    @booking.cancel if current_user == @booking.user
+  def create
+    @user = current_user
+    @nap_space = NapSpace.find(params[:nap_space_id])
+    @booking = Booking.new(strong_params)
+    @booking.nap_space = @nap_space
+    @booking.user = @user
+    @booking.confirmation_status = 'requested'
+    if @booking.save
+      redirect_to bookings_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
+
+  def strong_params
+    params.require(:booking).permit(:start_time, :end_time)
+  end
 
   def set_booking
     @booking = Booking.find(params[:id])
