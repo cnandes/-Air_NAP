@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "nap_spaces#home"
 
-  resources :nap_spaces
-
+  resources :nap_spaces do
+    resources :bookings, only: %i[new create]
+  end
   resources :bookings, only: [:index, :show]
 
   get '/bookings/:id/confirm', to: 'bookings#confirm', as: :booking_confirm

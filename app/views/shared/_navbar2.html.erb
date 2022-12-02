@@ -1,13 +1,13 @@
 <body cz-shortcut-listen="true">
   <!-- Navbar Start -->
-  <header id="topnav" class="defaultscroll sticky dark">
+  <header id="topnav" class="defaultscroll sticky nav-sticky">
     <div class="container">
       <!-- Logo container-->
       <a class="logo" href="#">
-        <img style="height:40px" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png">
+        <%= image_tag "airnap_logo.png", height: 40 %>
       </a>
       <!-- End Logo container-->
-      <div class="menu-extras">
+      <%# <div class="menu-extras">
         <div class="menu-item">
           <!-- Mobile menu toggle-->
           <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
@@ -19,25 +19,26 @@
           </a>
           <!-- End mobile menu toggle-->
         </div>
-      </div>
+      </div> %>
       <%# /* ------------------------ profile and logout icons ------------------------ */ %>
       <% if user_signed_in? %>
         <ul class="buy-button list-inline mb-0">
           <%# /* --------------------------------- profile -------------------------------- */ %>
+          <li class="list-inline-item mb-0 navbar-heading"><%= current_user.name %></li>
           <li class="list-inline-item mb-0">
             <div class="dropdown dropdown-primary">
               <button type="button" class=" btn btn-icon btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="material-icons">&#xE87C;</span></button>
               <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-2 py-2" style="width: 100px;">
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 01]'.html_safe, "#", class: "dropdown-item text-dark" %>
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 02]'.html_safe, "#", class: "dropdown-item text-dark" %>
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> [action 03]'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Bookings'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My NapSpaces'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Account'.html_safe, "#", class: "dropdown-item text-dark" %>
               </div>
             </div>
           </li>
           <%# /* --------------------------------- logout --------------------------------- */ %>
-          <li class="list-inline-item mb-0">
-            <%= link_to '<span class="material-icons btn btn-icon btn-primary" >&#xe9ba;</span> Log out'.html_safe, destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item"  %>
+          <li class="list-inline-item mb-0 navbar-heading">
+            <%= link_to '<span class="material-icons btn btn-icon btn-primary" >&#xe9ba;</span> Exit'.html_safe, destroy_user_session_path, data: {turbo_method: :delete}, class: "navbar-heading"  %>
           </li>
         </ul>
         <!--end logout button-->
@@ -45,9 +46,9 @@
           <!-- navigation options Menu-->
           <ul class="navigation-menu ">
             <%# /* ---------------------------------- home ---------------------------------- */ %>
-            <li> <%= link_to '<i class="fas fa-home fa-sm me-1"></i> home'.html_safe, "#", class: "sub-menu-item" %></li>
+            <li> <%= link_to '<i class="fas fa-home fa-sm me-1"></i> home'.html_safe, root_path , class: "sub-menu-item" %></li>
             <%# /* -------------------------------- messages -------------------------------- */ %>
-            <li> <%= link_to '<i class="fas fa-comment-alt fa-sm me-1"></i> messages'.html_safe, "#", class: "sub-menu-item" %></li>
+            <li> <%= link_to '<i class="fas fa-comment-alt fa-sm me-1"></i> NapSpaces'.html_safe,  nap_spaces_path , class: "sub-menu-item" %></li>
             <%# /* -------------------------- other drop down list -------------------------- */ %>
             <li class="has-submenu parent-menu-item">
               <a href="javascript:void(0)"><i class="fas fa-couch fa-sm me-1"></i> Other</a><span class="menu-arrow"></span>
@@ -63,7 +64,8 @@
         <%# /* --------------------------- log in alternative --------------------------- */ %>
       <% else %>
         <ul class="buy-button list-inline mb-0">
-          <%= link_to '<span class="material-icons btn btn-icon btn-primary" >&#xea77;</span> Log in'.html_safe, new_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item"  %>
+          <li class="list-inline-item mb-0 navbar-heading "><%= link_to '<span class="material-icons btn btn-icon btn-primary" >&#xea77;</span> Sign Up'.html_safe,  new_user_registration_path, class: "navbar-heading"  %></li>
+          <li class="list-inline-item mb-0 navbar-heading "><%= link_to '<span class="material-icons btn btn-icon btn-primary" >&#xea77;</span> Log in'.html_safe, new_user_session_path, class: "navbar-heading"  %></li>
         </ul>
       <% end %>
       <!--end navigation-->
