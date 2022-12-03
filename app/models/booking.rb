@@ -9,6 +9,6 @@ class Booking < ApplicationRecord
 
   def total_cost
     duration = (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
-    duration * nap_space.cost_per_hr
+    (duration * nap_space.cost_per_hr).round(2)
   end
 end
