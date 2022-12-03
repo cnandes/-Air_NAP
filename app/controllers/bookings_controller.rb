@@ -1,5 +1,9 @@
 class BookingsController < ApplicationController
 
+  def index
+    @bookings = Booking.where(user_id: current_user.id)
+  end
+
   def new
     @nap_space = NapSpace.find(params[:nap_space_id])
     @booking = Booking.new
