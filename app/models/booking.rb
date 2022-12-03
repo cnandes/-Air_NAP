@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :nap_space
+  has_one :review
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :user, presence: true
