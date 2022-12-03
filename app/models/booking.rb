@@ -8,7 +8,7 @@ class Booking < ApplicationRecord
   validates :confirmation_status, presence: true, inclusion: { in: %w[requested confirmed declined cancelled] }
 
   def total_cost
-    duration = (Time.parse(@end_time.to_s) - Time.parse(@start_time.to_s)) / 3600
+    duration = (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
     duration * nap_space.cost_per_hr
   end
 end
