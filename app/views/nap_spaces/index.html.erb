@@ -1,4 +1,4 @@
-<h1>This is NapSpace Index</h1>
+<h1>Find a place for a little lie down 😴</h1>
 <p style="color: green"><%= notice %></p>
 
 
@@ -6,11 +6,10 @@
   <%= nap_space.description %><br />
   <%= nap_space.address %>
   <p>
-    <%= link_to "Show Time", nap_space_path(nap_space) %>
+    <%= link_to "#{nap_space.cost_per_hr} per hr", nap_space_path(nap_space) %>
     <hr>
   </p>
 <% end %>
 
-<%= link_to "home", root_path %> |
-
-<%= link_to "All Bookings", bookings_path %>
+| <%= link_to "Back to home 🏠", root_path %> |
+<%= link_to "My upcoming bookings 🗓", bookings_path %> |

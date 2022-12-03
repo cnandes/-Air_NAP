@@ -1,15 +1,15 @@
-<h1>Show Time</h1>
+<h1><%= @nap_space.description %></h1>
 <p style="color: green"><%= notice %></p>
 
 <%= render @nap_space %>
 
-| <%= link_to "Edit NapSpace", edit_nap_space_path(@nap_space) %> |
-
-<%= link_to "Delete Nap Space",
+<% if @nap_space.user == @current_user %>
+  | <%= link_to "Edit Nap Space", edit_nap_space_path(@nap_space) %> |
+  <%= link_to "Delete Nap Space",
             nap_space_path(@nap_space),
             data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
           %>
-
-<%= link_to "Book this space", new_nap_space_booking_path(@nap_space)%> |
-<%= link_to "Index", nap_spaces_path %> |
-<%= link_to "home", root_path %> |
+<% end %>
+| <%= link_to "Book this space 🗓", new_nap_space_booking_path(@nap_space)%> |
+<%= link_to "Back to search 🔎", nap_spaces_path %> |
+<%= link_to "Home 🏠", root_path %> |
