@@ -10,12 +10,14 @@
 
 <p><%= @booking.confirmation_status.capitalize %></p>
 
-<% unless @booking.confirmation_status == 'cancelled' %>
+<% if @booking.confirmation_status == 'requested'  %>
   <% if (@booking.nap_space.user == current_user) %>
-    <%= link_to "Confirm", booking_confirm_path(@booking) %>
-    <%= link_to "Decline", booking_decline_path(@booking) %>
+    <%= link_to "Confirm", booking_confirm_path(@booking), class: "btn btn-primary mt-2" %>
+    <%= link_to "Decline", booking_decline_path(@booking), class: "btn btn-warning  mt-2" %>
   <% end %>
+<% end %>
+<% unless @booking.confirmation_status == 'cancelled' %>
   <% if @booking.user == current_user %>
-    <%= link_to "Cancel", booking_cancel_path(@booking) %>
+    <%= link_to "Cancel", booking_cancel_path(@booking), class: "btn btn-danger  mt-2" %>
   <% end %>
 <% end %>
