@@ -1,7 +1,6 @@
 class NapSpacesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
   before_action :set_nap_space, only: %i[show edit update destroy]
-  before_action :set_user, only: %i[show create]
   def home
   end
 
@@ -10,7 +9,6 @@ class NapSpacesController < ApplicationController
   end
 
   def show
-    # @user = current_user
     @booking = Booking.new
   end
 
@@ -19,7 +17,7 @@ class NapSpacesController < ApplicationController
   end
 
   def create
-    # @user = current_user
+    @user = current_user # TODO: replace w private set_user method
     @nap_space = NapSpace.new(nap_space_params)
     @nap_space.user = @user
 
@@ -54,9 +52,5 @@ class NapSpacesController < ApplicationController
 
   def nap_space_params
     params.require(:nap_space).permit(:description, :address, :cost_per_hr, :image_url)
-  end
-
-  def set_user
-    @user = current_user
   end
 end
