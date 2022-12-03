@@ -1,16 +1,28 @@
 <div id="<%= dom_id nap_space %>">
-  <p>
-    <strong>Address:</strong>
-    <%= nap_space.address %>
-  </p>
-
-  <p>
-    <strong>Cost Per Hour:</strong>
-    <%= nap_space.cost_per_hr %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
-    <%= nap_space.image_url %>
-  </p>
+  <div class=" mb-4 pb-22">
+    <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+      <div class="position-relative">
+        <div class="overlay rounded-top"></div>
+        <div class="card-body content">
+          <h3 class="card-title title text-dark">  <%= nap_space.description %></h3>
+          <div class="post-meta d-flex justify-content mt-3">
+            <ul class="list-unstyled mb-0">
+              <li class="list-inline-item me-2 mb-0"><%= image_tag nap_space.image_url, class: "card-img-top" %></li>
+            </ul>
+            <li class="list-inline-item me-2 mb-0 card-body ">
+              <h5 class=" title"> Address</h5>
+              <p class=" readmore"><%= nap_space.address %></p>
+              <br>
+              <h5 class=" title"> Cost per Hour</h5>
+              <p class="readmore"> $<%= nap_space.cost_per_hr %></p>
+              <br>
+              <br>
+              <p class="text-muted"> listing was updated <%= nap_space.updated_at%></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

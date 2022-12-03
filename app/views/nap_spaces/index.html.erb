@@ -1,15 +1,30 @@
-<h1>Find a place for a little lie down 😴</h1>
-<p style="color: green"><%= notice %></p>
-
-
-<% @nap_spaces.each do |nap_space| %>
-  <%= nap_space.description %><br />
-  <%= nap_space.address %>
-  <p>
-    <%= link_to "#{nap_space.cost_per_hr} per hr", nap_space_path(nap_space) %>
-    <hr>
-  </p>
-<% end %>
-
-| <%= link_to "Back to home 🏠", root_path %> |
-<%= link_to "My upcoming bookings 🗓", bookings_path %> |
+<br>
+<div class="container">
+  <h1 class="card-title title text-dark">Find a place for a little lie down 😴</h1>
+  <p style="color: green"><%= notice %></p>
+  <div class="row">
+    <% @nap_spaces.each do |nap_space| %>
+      <div class="col-lg-4 col-md-6 mb-4 pb-22">
+        <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+          <div class="position-relative">
+            <%= image_tag nap_space.image_url, class: "card-img-top" %>
+            <div class="overlay rounded-top"></div>
+            <div class="card-body content">
+              <h3 class="card-title title text-dark">  <%= nap_space.description %></h3>
+              <div class="post-meta d-flex justify-content-between mt-3">
+                <ul class="list-unstyled mb-0">
+                  <li class="list-inline-item me-2 mb-0">
+                    <p class="text-muted readmore"> <%= nap_space.address %></p>
+                  </li>
+                  <li class=" text-muted mb-2"><%= "$#{nap_space.cost_per_hr} per hr" %>  </li>
+                  <li class="list-inline-item me-2 mb-0">   <%= link_to 'Read More <i class="fa-solid fa-chevron-right  fa-sm"></i>'.html_safe, nap_space_path(nap_space) %></li>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to "Home", root_path, class: "btn btn-primary" %>
+    <%= link_to "All Bookings", bookings_path,class: "btn btn-primary" %>
+  </div>
