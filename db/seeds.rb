@@ -11,7 +11,7 @@ puts "creating nap_spaces"
 
 20.times do
   nap_space = NapSpace.create(
-    user_id: rand(0..5),
+    user_id: rand(1..4),
     description: Faker::Company.catch_phrase,
     address: Faker::Address.full_address,
     cost_per_hr: Faker::Number.decimal(l_digits: 2),
