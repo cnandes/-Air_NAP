@@ -1,1 +1,31 @@
-<h1>Booking Index</h1>
+<h1>Up Coming Bookings</h1><br />
+
+<div class="card-group">
+
+
+  <% @bookings.each do |booking| %>
+
+    <img class="card-img-top" src="<%= booking.nap_space.image_url %>" alt="Card image cap">
+
+    <div class="card-body">
+      <h5 class="card-title"><%= booking.nap_space.description %></h5>
+      <p class="card-text">
+        <strong>Start Time:</strong>
+        <%= booking.start_time %>
+      </p>
+
+      <p class="card-text">
+        <strong>End Time:</strong>
+        <%= booking.end_time %>
+      </p>
+
+      <p class="card-text">
+        <strong>Address:</strong>
+        <%= booking.nap_space.address %>
+      </p>
+      <hr>
+    </div>
+
+  <% end %>
+
+</div>
