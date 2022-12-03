@@ -1,6 +1,10 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show confirm decline cancel host?]
 
+  def index
+    @bookings = Booking.where(user_id: current_user.id)
+  end
+
   def new
     @nap_space = NapSpace.find(params[:nap_space_id])
     @booking = Booking.new
