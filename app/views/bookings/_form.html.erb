@@ -1,16 +1,16 @@
-<%= simple_form_for [nap_space, booking] do |f| %>
+<%= simple_form_for [nap_space, booking], data: { controller: 'flatpickr' } do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-input">
-    <%= f.input :start_time %>
+    <%= f.input :start_time, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
   </div>
 
   <div class="form-input">
-    <%= f.input :end_time %>
+    <%= f.input :end_time, as: :string, input_html: { data: { flatpickr_target: "endTime" } } %>
   </div>
 
   <div class="form-input">
-    <%= f.submit %>
+    <%= f.submit "Book now" %>
   </div>
 <% end %>
