@@ -9,26 +9,22 @@
     <div class="row">
       <% @bookings.each do |booking|%>
           <div class="col-lg-4 col-md-6 mb-4 pb-22">
-            <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
-              <div class="img-thumbnail">
-                <% if booking.review %>
-                  <li class="list-unstyled">
-                  <div class="review-chat">
-                    <p> <%= current_user.name %> </p>
-                    <div class="review-comment">
-                      <% booking.review.rating.times do %>
-                      <i class="fa fa-star" aria-hidden="true" ></i>
-                      <% end %>
-                      <% (5- booking.review.rating).times do %>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                      <% end %>
-                      <p> <%= booking.review.content %> </p>
-                    </div>
-                  </div>
-                  </li>
-                <% end %>
+            <% if booking.review %>
+              <li class="list-unstyled">
+              <div class="review-chat">
+                <p> <%= current_user.name %> </p>
+                <div class="review-comment">
+                  <% booking.review.rating.times do %>
+                  <i class="fa fa-star" aria-hidden="true" ></i>
+                  <% end %>
+                  <% (5- booking.review.rating).times do %>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  <% end %>
+                  <p> <%= booking.review.content %> </p>
+                </div>
               </div>
-            </div>
+              </li>
+            <% end %>
           </div>
       <% end %>
     </div>

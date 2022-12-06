@@ -42,8 +42,11 @@ class NapSpacesController < ApplicationController
   end
 
   def destroy
-    @nap_space.destroy
-    redirect_to root_path, status: :see_other
+    if @nap_space.destroy
+      redirect_to root_path, status: :see_other
+    else
+      render @nap_space, status: :unprocessable_entity
+    end
   end
 
   private
