@@ -10,6 +10,15 @@ class Booking < ApplicationRecord
 
   validate :end_time_after_start_time
 
+  def total_cost
+    duration = (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
+    (duration * nap_space.cost_per_hr).round(2)
+  end
+
+  def started?
+    Time.parse(DateTime.now.to_s) > Time.parse(start_time.to_s)
+  end
+
   private
 
   def end_time_after_start_time
@@ -18,14 +27,5 @@ class Booking < ApplicationRecord
     if end_time < start_time
       errors.add(:end_time, "must be after the start date")
     end
-  end
-
-  def total_cost
-    duration = (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
-    (duration * nap_space.cost_per_hr).round(2)
-  end
-
-  def started?
-    Time.parse(DateTime.now.to_s) > Time.parse(start_time.to_s)
   end
 end
