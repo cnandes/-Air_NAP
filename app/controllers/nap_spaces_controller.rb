@@ -7,11 +7,26 @@ class NapSpacesController < ApplicationController
 
   def index
     @nap_spaces = NapSpace.all
+    @markers = @nap_spaces.geocoded.map do |nap_space|
+      {
+        lat: nap_space.latitude,
+        lng: nap_space.longitude,
+        # info_window: render_to_string(partial: "info_window", locals: {flat: flat}),
+        # image_url: helpers.asset_url("../assets/images/toe-up.png")
+      }
+    end
   end
 
   def show
     # @user = current_user
     @booking = Booking.new
+    @marker = []
+    return unless @nap_space.geocoded?
+
+    @marker = [{
+      lat: @nap_space.latitude,
+      lng: @nap_space.longitude
+    }]
   end
 
   def new

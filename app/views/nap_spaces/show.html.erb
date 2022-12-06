@@ -2,6 +2,12 @@
   <br>
   <h1><%= @nap_space.description %></h1>
   <p style="color: green"><%= notice %></p>
+  <div class="my-4 rounded border-0 shadow overflow-hidden"
+    style="width: 100%; height: 600px;"
+    data-controller="map"
+    data-map-markers-value="<%= @marker.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
   <div class="container">
     <%= render @nap_space %>
     <%= link_to "Book this space 🗓", new_nap_space_booking_path(@nap_space) , class: "btn btn-primary mt-2" %>

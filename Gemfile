@@ -48,6 +48,8 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
+gem "geocoder"
+
 gem "devise"
 gem "faker"
 
