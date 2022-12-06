@@ -4,6 +4,35 @@
   <p style="color: green"><%= notice %></p>
   <div class="container">
     <%= render @nap_space %>
+
+
+    <div class="row">
+      <% @bookings.each do |booking|%>
+          <div class="col-lg-4 col-md-6 mb-4 pb-22">
+            <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+              <div class="img-thumbnail">
+                <% if booking.review %>
+                  <li class="list-unstyled">
+                  <div class="review-chat">
+                    <p> <%= current_user.name %> </p>
+                    <div class="review-comment">
+                      <% booking.review.rating.times do %>
+                      <i class="fa fa-star" aria-hidden="true" ></i>
+                      <% end %>
+                      <% (5- booking.review.rating).times do %>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                      <% end %>
+                      <p> <%= booking.review.content %> </p>
+                    </div>
+                  </div>
+                  </li>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+
     <%= link_to "Book this space 🗓", new_nap_space_booking_path(@nap_space) , class: "btn btn-primary mt-2" %>
     <% if @nap_space.user == @current_user %>
       <%= link_to "Edit NapSpace", edit_nap_space_path(@nap_space), class: "btn btn-warning  mt-2"  %>
@@ -15,6 +44,9 @@
               %>
       <br>
     <% end %>
+
+
+
     <%= link_to "Back to search 🔎", nap_spaces_path , class: "btn btn-secondary mt-2" %>
     <%= link_to "Home 🏠", root_path , class: "btn btn-secondary mt-2" %>
   </div>

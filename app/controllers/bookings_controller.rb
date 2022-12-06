@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.where(user_id: current_user.id).order(:start_time)
+    @review = Review.new
   end
 
   def new

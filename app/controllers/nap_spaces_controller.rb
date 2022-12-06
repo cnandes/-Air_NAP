@@ -11,7 +11,7 @@ class NapSpacesController < ApplicationController
 
   def show
     # @user = current_user
-    @booking = Booking.new
+    @bookings = @nap_space.bookings
   end
 
   def new
