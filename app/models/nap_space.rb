@@ -2,6 +2,8 @@ class NapSpace < ApplicationRecord
   has_many :bookings
   belongs_to :user
 
+  has_many :reviews, through: :bookings
+
   validates :address, presence: true
   validates :address, uniqueness: true
   validates :cost_per_hr, presence: true
