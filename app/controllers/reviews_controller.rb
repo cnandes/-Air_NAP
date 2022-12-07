@@ -6,6 +6,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    return if current_user != @booking.user
+    return unless @booking.confirmation_status == "confirmed" && @booking.ended?
+
     @review = Review.new(review_params)
     @review.booking = @booking
     if @review.save
