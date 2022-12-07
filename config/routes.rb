@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :nap_spaces do
     resources :bookings, only: %i[new create]
   end
-  resources :bookings, only: [:index, :show] do
-    resources :reviews, only: [:create, :index, :show]
+  resources :bookings, only: %i[index show] do
+    resources :reviews, only: %i[index show new create]
   end
 
   get '/bookings/:id/confirm', to: 'bookings#confirm', as: :booking_confirm
