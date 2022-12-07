@@ -91,7 +91,11 @@
                     <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_mins.to_i} minutes" %></li>
                     <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
                     <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
-                    <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
+                    <% unless booking.review %>
+                      <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
+                    <% else %>
+                      <p>Thank you for your review!</p>
+                    <% end %>
                   </ul>
                 </div>
               </div>
