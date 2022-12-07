@@ -24,7 +24,14 @@ class Booking < ApplicationRecord
   end
 
   def duration_display
-    duration_mins < 60 ? "#{duration_mins.to_i} minutes" : "#{duration_hours.to_i} hrs"
+    remaining_minutes = (duration_hours - duration_hours.to_i) * 60
+    if duration_mins < 60
+      "#{duration_mins.to_i} minutes"
+    elsif remaining_minutes.to_i.zero?
+      "#{duration_hours.to_i} hrs"
+    else
+      "#{duration_hours.to_i} hrs #{remaining_minutes.to_i} minutes"
+    end
   end
 
   def confirmed?
