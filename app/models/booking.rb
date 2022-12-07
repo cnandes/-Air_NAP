@@ -23,6 +23,10 @@ class Booking < ApplicationRecord
     duration_hours * 60
   end
 
+  def confirmed?
+    confirmation_status == "confirmed"
+  end
+
   def started?
     DateTime.now > start_time
   end
