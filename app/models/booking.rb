@@ -19,12 +19,20 @@ class Booking < ApplicationRecord
     (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
   end
 
+  def duration_mins
+    duration_hours * 60
+  end
+
   def started?
-    Time.parse(DateTime.now.to_s) > Time.parse(start_time.to_s)
+    DateTime.now > start_time
   end
 
   def ended?
-    Time.parse(DateTime.now.to_s) > Time.parse(end_time.to_s)
+    DateTime.now > end_time
+  end
+
+  def start_time_formatted
+    start_time.strftime("%I:%M%p, %m/%d/%Y")
   end
 
   private
