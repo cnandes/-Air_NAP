@@ -19,6 +19,10 @@ class Booking < ApplicationRecord
     Time.parse(DateTime.now.to_s) > Time.parse(start_time.to_s)
   end
 
+  def ended?
+    Time.parse(DateTime.now.to_s) > Time.parse(end_time.to_s)
+  end
+
   private
 
   def end_time_after_start_time

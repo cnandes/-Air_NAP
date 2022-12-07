@@ -2,7 +2,9 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show confirm decline cancel host?]
 
   def index
-    @bookings = Booking.where(user_id: current_user.id).order(:start_time)
+    @bookings = current_user.bookings.order(:start_time).reject(&:started?)
+    @bookings_to_approve = current_user.nap_spaces.map(&:bookings).flatten.reject(&:started?)
+    @bookings_past = current_user.bookings.select(&:ended?)
     @review = Review.new
   end
 
