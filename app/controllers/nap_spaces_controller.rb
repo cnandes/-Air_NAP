@@ -7,11 +7,18 @@ class NapSpacesController < ApplicationController
 
   def index
     @nap_spaces = NapSpace.all
+    @markers = @nap_spaces.geocoded.map do |nap_space|
+      marker_info(nap_space)
+    end
   end
 
   def show
-    # @user = current_user
+    @booking = Booking.new
     @bookings = @nap_space.bookings
+    @marker = []
+    return unless @nap_space.geocoded?
+
+    @marker = [marker_info(@nap_space)]
   end
 
   def new
@@ -19,7 +26,6 @@ class NapSpacesController < ApplicationController
   end
 
   def create
-    # @user = current_user
     @nap_space = NapSpace.new(nap_space_params)
     @nap_space.user = @user
 
@@ -61,5 +67,14 @@ class NapSpacesController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def marker_info(nap_space)
+    return {
+      lat: nap_space.latitude,
+      lng: nap_space.longitude,
+      info_window: render_to_string(partial: "popup", locals: { nap_space: nap_space }),
+      image_url: helpers.asset_url("spent_marker.png")
+    }
   end
 end
