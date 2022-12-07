@@ -11,8 +11,12 @@ class Booking < ApplicationRecord
   validate :end_time_after_start_time
 
   def total_cost
-    duration = (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
+    duration = duration_hours
     (duration * nap_space.cost_per_hr).round(2)
+  end
+
+  def duration_hours
+    (Time.parse(end_time.to_s) - Time.parse(start_time.to_s)) / 3600
   end
 
   def started?

@@ -1,144 +1,106 @@
 <h1>Bookings</h1><br />
 
-  <h3>Upcoming bookings</h3>
+  <h3>My upcoming bookings</h3>
   <div class="card-group">
-
-    <% @bookings.each do |booking| %>
-      <div class="card">
-        <%= image_tag booking.nap_space.image_url, class:"img", style:"margin-bottom: 10px;" %>
-
-        <div class="text-left" style="margin-left: 10px; padding: 10px;">
-          <h5 class="card-title"><%= booking.nap_space.description %></h5>
-          <p class="card-text">
-            <strong>Start Time:</strong>
-            <%= booking.start_time %>
-          </p>
-
-          <p class="card-text">
-            <strong>End Time:</strong>
-            <%= booking.end_time %>
-          </p>
-
-          <p class="card-text">
-            <strong>Address:</strong>
-            <%= booking.nap_space.address %>
-          </p>
-
-          <p class="card-text">
-            <strong>Price: $<%= booking.total_cost %></strong>
-          </p>
-
-          <p><strong><em><%= booking.confirmation_status.capitalize %></em></strong></p>
-
-          <% if (booking.confirmation_status == 'requested' && !booking.started? && booking.nap_space.user == current_user)  %>
-            <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
-            <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
-          <% end %>
-          <% unless (booking.confirmation_status == 'cancelled' || booking.started?) %>
-            <% if booking.user == current_user %>
-              <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
-
-            <% end %>
-          <% end %>
-        </div>
-        <div class="unk" style="margin-left: 30px; padding: 10px;">
-          <% if booking.review %>
-            <div class="text-right">
-              <div class="review-coment">
-                <% booking.review.rating.times do %>
-                <i class="fa fa-star" aria-hidden="true" ></i>
-                <% end %>
-                <% (5- booking.review.rating).times do %>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <% end %>
-                <p class="text"> <%= booking.review.content %> </p>
+    <div class="row">
+      <% @bookings.each do |booking| %>
+        <div class="col-lg-4 col-md-6 mb-4 pb-22">
+          <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+            <div class="position-relative">
+              <%= image_tag booking.nap_space.image_url, class: "card-img-top", height: 300 %>
+              <div class="overlay rounded-top"></div>
+              <div class="card-body content">
+                <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                <div class="post-meta d-flex justify-content-between mt-3">
+                  <ul class="list-unstyled mb-0">
+                    <li class="list-inline-item me-2 mb-0">
+                      <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
+                    </li>
+                    <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time}" %></li>
+                    <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_hours} hours" %></li>
+                    <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
+                    <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+                    <% unless booking.confirmation_status == 'cancelled' %>
+                        <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+                    <% end %>
+                    <%# <li class="list-inline-item me-2 mb-0">   <%= link_to 'Read More <i class="fa-solid fa-chevron-right  fa-sm"></i>'.html_safe, nap_space_path(nap_space) </li> %>
+                  </ul>
+                </div>
               </div>
             </div>
-
-          <%  else %>
-            <div class="text-center review">
-            <h3 class="text-center">Leave a review?</h3>
-            <%= render 'reviews/form', booking: booking, review: @review %>
-            </div>
-          <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <hr>
 
   <h3>Bookings to approve</h3>
   <div class="card-group">
-    <% @bookings_to_approve.each do |booking| %>
-      <div class="card">
-        <%= image_tag booking.nap_space.image_url, class:"img", style:"margin-bottom: 10px;" %>
-
-        <div class="text-left" style="margin-left: 10px; padding: 10px;">
-          <h5 class="card-title"><%= booking.nap_space.description %></h5>
-          <p class="card-text">
-            <strong>Start Time:</strong>
-            <%= booking.start_time %>
-          </p>
-
-          <p class="card-text">
-            <strong>End Time:</strong>
-            <%= booking.end_time %>
-          </p>
-
-          <p class="card-text">
-            <strong>Address:</strong>
-            <%= booking.nap_space.address %>
-          </p>
-
-          <p class="card-text">
-            <strong>Price: $<%= booking.total_cost %></strong>
-          </p>
-
-          <p><strong><em><%= booking.confirmation_status.capitalize %></em></strong></p>
-
-          <% if (booking.confirmation_status == 'requested' && !booking.started?)  %>
-            <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
-            <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
-          <% end %>
+    <div class="row">
+      <% @bookings_to_approve.each do |booking| %>
+        <div class="col-lg-4 col-md-6 mb-4 pb-22">
+          <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+            <div class="position-relative">
+              <%= image_tag booking.nap_space.image_url, class: "card-img-top", height: 300 %>
+              <div class="overlay rounded-top"></div>
+              <div class="card-body content">
+                <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                <div class="post-meta d-flex justify-content-between mt-3">
+                  <ul class="list-unstyled mb-0">
+                    <li class="list-inline-item me-2 mb-0">
+                      <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
+                    </li>
+                    <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time}" %></li>
+                    <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_hours} hours" %></li>
+                    <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
+                    <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+                    <% if (booking.confirmation_status == 'requested' && !booking.started?)  %>
+                      <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
+                      <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
+                    <% end %>
+                    <%# <li class="list-inline-item me-2 mb-0">   <%= link_to 'Read More <i class="fa-solid fa-chevron-right  fa-sm"></i>'.html_safe, nap_space_path(nap_space) </li> %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <hr>
 
   <h3>Your past bookings</h3>
   <div class="card-group">
-    <% @bookings_past.each do |booking| %>
-      <div class="card">
-        <%= image_tag booking.nap_space.image_url, class:"img", style:"margin-bottom: 10px;" %>
-
-        <div class="text-left" style="margin-left: 10px; padding: 10px;">
-          <h5 class="card-title"><%= booking.nap_space.description %></h5>
-          <p class="card-text">
-            <strong>Start Time:</strong>
-            <%= booking.start_time %>
-          </p>
-
-          <p class="card-text">
-            <strong>End Time:</strong>
-            <%= booking.end_time %>
-          </p>
-
-          <p class="card-text">
-            <strong>Address:</strong>
-            <%= booking.nap_space.address %>
-          </p>
-
-          <p class="card-text">
-            <strong>Price: $<%= booking.total_cost %></strong>
-          </p>
-
-          <p><strong><em><%= booking.confirmation_status.capitalize %></em></strong></p>
-
-          <%= link_to "Leave a review", "#", class: "btn btn-primary  mt-2"  %>
+    <div class="row">
+      <% @bookings_past.each do |booking| %>
+        <div class="col-lg-4 col-md-6 mb-4 pb-22">
+          <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+            <div class="position-relative">
+              <%= image_tag booking.nap_space.image_url, class: "card-img-top", height: 300 %>
+              <div class="overlay rounded-top"></div>
+              <div class="card-body content">
+                <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                <div class="post-meta d-flex justify-content-between mt-3">
+                  <ul class="list-unstyled mb-0">
+                    <li class="list-inline-item me-2 mb-0">
+                      <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
+                    </li>
+                    <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time}" %></li>
+                    <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_hours} hours" %></li>
+                    <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
+                    <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+                    <%= link_to "Leave a review", "#", class: "btn btn-primary  mt-2"  %>
+                    <%# <li class="list-inline-item me-2 mb-0">   <%= link_to 'Read More <i class="fa-solid fa-chevron-right  fa-sm"></i>'.html_safe, nap_space_path(nap_space) </li> %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
