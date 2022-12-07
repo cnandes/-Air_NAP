@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
 
   def confirm
     return unless user_is_host?
-    return if cancelled?(@booking) || @booking.started?
+    return if @booking.cancelled? || @booking.started?
 
     @booking.confirmation_status = 'confirmed'
     redirect_to booking_path(@booking) if @booking.save!
@@ -26,7 +26,7 @@ class BookingsController < ApplicationController
 
   def decline
     return unless user_is_host?
-    return if cancelled?(@booking) || @booking.started?
+    return if @booking.cancelled? || @booking.started?
 
     @booking.confirmation_status = 'declined'
     redirect_to booking_path(@booking) if @booking.save!
@@ -55,10 +55,6 @@ class BookingsController < ApplicationController
   end
 
   private
-
-  def cancelled?(booking)
-    booking.confirmation_status == 'cancelled'
-  end
 
   def user_is_host?
     current_user == @booking.nap_space.user

@@ -27,6 +27,10 @@ class Booking < ApplicationRecord
     confirmation_status == "confirmed"
   end
 
+  def cancelled
+    confirmation_status == 'cancelled'
+  end
+
   def started?
     DateTime.now > start_time
   end
