@@ -15,6 +15,7 @@ class NapSpacesController < ApplicationController
   def show
     @booking = Booking.new
     @bookings = @nap_space.bookings
+    @reviews = @bookings.map(&:review)
     @marker = []
     return unless @nap_space.geocoded?
 
