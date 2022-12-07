@@ -14,6 +14,7 @@ class NapSpacesController < ApplicationController
 
   def show
     @booking = Booking.new
+    @bookings = @nap_space.bookings
     @marker = []
     return unless @nap_space.geocoded?
 
@@ -25,7 +26,6 @@ class NapSpacesController < ApplicationController
   end
 
   def create
-    # @user = current_user
     @nap_space = NapSpace.new(nap_space_params)
     @nap_space.user = @user
 
@@ -48,8 +48,11 @@ class NapSpacesController < ApplicationController
   end
 
   def destroy
-    @nap_space.destroy
-    redirect_to root_path, status: :see_other
+    if @nap_space.destroy
+      redirect_to root_path, status: :see_other
+    else
+      render @nap_space, status: :unprocessable_entity
+    end
   end
 
   private

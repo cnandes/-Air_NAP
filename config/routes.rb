@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :nap_spaces do
     resources :bookings, only: %i[new create]
   end
-  resources :bookings, only: [:index, :show]
+  resources :bookings, only: [:index, :show] do
+    resources :reviews, only: [:create, :index, :show]
+  end
 
   get '/bookings/:id/confirm', to: 'bookings#confirm', as: :booking_confirm
   get '/bookings/:id/decline', to: 'bookings#decline', as: :booking_decline

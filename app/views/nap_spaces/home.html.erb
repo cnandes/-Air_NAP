@@ -1,4 +1,18 @@
-<br>
-<h1>Home sweet home 🏠</h1>
-<%= link_to "I need a nap 🥱", nap_spaces_path, class: "btn btn-primary" %>
-<%= link_to "List a nap space 🤑", new_nap_space_path, class: "btn btn-primary" %>
+<!-- Hero Start -->
+<section class="landingBG d-table d-flex align-items-center w-100"  id="home">
+  <div class="container">
+    <div class="row position-relative align-items-center pt-4">
+      <div class="col-lg-7 offset-lg-0">
+        <div class="card title-heading studio-home rounded shadow m-5 p-3">
+          <h1 class="heading mb-3">Home sweet home</h1>
+          <p class="para-desc text-muted mb-0">What would you like to do?</p>
+          <div class="mt-4">
+            <%= link_to "I need a nap 🥱", nap_spaces_path, class: "btn btn-primary mt-2 me-2" %>
+            <%= link_to "List a nap space 🤑", new_nap_space_path, class: "btn btn-outline-primary mt-2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero Start -->

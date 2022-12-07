@@ -56,3 +56,14 @@ p {
     transition: none;
   }
 }
+
+
+.landingBG {
+  // background: image-url('nap_space_nap_pod.jpeg');
+  background: image-url('BG_image.jpg');
+  background-size: cover;
+  height: calc(100vh - 140px);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  // background-attachment: fixed;
+}
