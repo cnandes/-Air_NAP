@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[show confirm decline cancel host?]
+  before_action :set_booking, only: %i[show confirm decline cancel user_is_host?]
 
   def index
     @bookings = current_user.bookings.order(:start_time).reject(&:started?)
@@ -14,6 +14,20 @@ class BookingsController < ApplicationController
   end
 
   def show
+  end
+
+  def create
+    @user = current_user
+    @nap_space = NapSpace.find(params[:nap_space_id])
+    @booking = Booking.new(strong_params)
+    @booking.nap_space = @nap_space
+    @booking.user = @user
+    @booking.confirmation_status = 'requested'
+    if @booking.save
+      redirect_to bookings_path, status: :see_other
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def confirm
@@ -38,20 +52,6 @@ class BookingsController < ApplicationController
 
     @booking.confirmation_status = 'cancelled'
     redirect_to booking_path(@booking) if @booking.save
-  end
-
-  def create
-    @user = current_user
-    @nap_space = NapSpace.find(params[:nap_space_id])
-    @booking = Booking.new(strong_params)
-    @booking.nap_space = @nap_space
-    @booking.user = @user
-    @booking.confirmation_status = 'requested'
-    if @booking.save
-      redirect_to bookings_path, status: :see_other
-    else
-      render :new, status: :unprocessable_entity
-    end
   end
 
   private
