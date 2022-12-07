@@ -1,62 +1,66 @@
 <h1>Up Coming Bookings</h1><br />
 
-<div class="card-group">
 
+  <div class="card-group ">
 
-  <% @bookings.each do |booking| %>
+    <% @bookings.each do |booking| %>
 
-    <img class="card-img-top" src="<%= booking.nap_space.image_url %>" alt="Card image cap">
+      <%= image_tag booking.nap_space.image_url, class:"img", style:"margin-bottom: 10px;" %>
 
-    <div class="card-body">
-      <h5 class="card-title"><%= booking.nap_space.description %></h5>
-      <p class="card-text">
-        <strong>Start Time:</strong>
-        <%= booking.start_time %>
-      </p>
+      <div class="text-left" style="margin-left: 10px; padding: 10px;">
+        <h5 class="card-title"><%= booking.nap_space.description %></h5>
+        <p class="card-text">
+          <strong>Start Time:</strong>
+          <%= booking.start_time %>
+        </p>
 
-      <p class="card-text">
-        <strong>End Time:</strong>
-        <%= booking.end_time %>
-      </p>
+        <p class="card-text">
+          <strong>End Time:</strong>
+          <%= booking.end_time %>
+        </p>
 
-      <p class="card-text">
-        <strong>Address:</strong>
-        <%= booking.nap_space.address %>
-      </p>
+        <p class="card-text">
+          <strong>Address:</strong>
+          <%= booking.nap_space.address %>
+        </p>
 
-      <p class="card-text">
-        <strong>Price: $<%= booking.total_cost %></strong>
-      </p>
-      <hr>
-      <p><strong><em><%= booking.confirmation_status.capitalize %></em></strong></p>
+        <p class="card-text">
+          <strong>Price: $<%= booking.total_cost %></strong>
+        </p>
 
-      <% if (booking.confirmation_status == 'requested' && !booking.started? && booking.nap_space.user == current_user)  %>
-        <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
-        <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
-      <% end %>
-      <% unless (booking.confirmation_status == 'cancelled' || booking.started?) %>
-        <% if booking.user == current_user %>
-          <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+        <p><strong><em><%= booking.confirmation_status.capitalize %></em></strong></p>
+
+        <% if (booking.confirmation_status == 'requested' && !booking.started? && booking.nap_space.user == current_user)  %>
+          <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
+          <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
         <% end %>
-      <% end %>
-    </div>
-    <% if booking.review %>
-      <div class="text-center">
-      <div class="review-coment">
-        <% booking.review.rating.times do %>
-        <i class="fa fa-star" aria-hidden="true" ></i>
+        <% unless (booking.confirmation_status == 'cancelled' || booking.started?) %>
+          <% if booking.user == current_user %>
+            <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+
+          <% end %>
         <% end %>
-        <% (5- booking.review.rating).times do %>
-        <i class="fa fa-star-o" aria-hidden="true"></i>
-        <% end %>
-        <p> <%= booking.review.content %> </p>
       </div>
-      </div>
-      <%  else %>
-      <div class="text-center review">
-      <h3 class="text-center">Leave a review?</h3>
-      <%= render 'reviews/form', booking: booking, review: @review %>
+      <div class="unk" style="margin-left: 30px; padding: 10px;">
+        <% if booking.review %>
+          <div class="text-right">
+            <div class="review-coment">
+              <% booking.review.rating.times do %>
+              <i class="fa fa-star" aria-hidden="true" ></i>
+              <% end %>
+              <% (5- booking.review.rating).times do %>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+              <% end %>
+              <p class="text"> <%= booking.review.content %> </p>
+            </div>
+          </div>
+
+        <%  else %>
+          <div class="text-center review">
+          <h3 class="text-center">Leave a review?</h3>
+          <%= render 'reviews/form', booking: booking, review: @review %>
+          </div>
+        <% end %>
       </div>
     <% end %>
-  <% end %>
-</div>
+  </div>
