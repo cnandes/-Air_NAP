@@ -27,7 +27,7 @@ class Booking < ApplicationRecord
     confirmation_status == "confirmed"
   end
 
-  def cancelled
+  def cancelled?
     confirmation_status == 'cancelled'
   end
 
