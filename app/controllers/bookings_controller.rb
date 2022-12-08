@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = current_user.bookings.order(:start_time).reject(&:started?)
-    @bookings_to_approve = current_user.nap_spaces.map(&:bookings).flatten.reject(&:started?)
+    @bookings_to_approve = current_user.nap_spaces.map(&:bookings).flatten.reject(&:started?).reject(&:cancelled?)
     @bookings_past = current_user.bookings.select(&:ended?).select(&:confirmed?)
     @review = Review.new
   end
