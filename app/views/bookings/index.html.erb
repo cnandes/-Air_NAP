@@ -18,7 +18,9 @@
                   <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
                   <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
                   <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                  <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+                  <li class="mb-2">
+                    <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
+                  </li>
                   <% unless booking.confirmation_status == 'cancelled' %>
                       <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
                   <% end %>
@@ -51,7 +53,9 @@
                   <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
                   <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
                   <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                  <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+                  <li class="mb-2">
+                    <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
+                  </li>
                   <% if (booking.confirmation_status == 'requested' && !booking.started?)  %>
                     <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
                     <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
@@ -85,7 +89,9 @@
                   <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
                   <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
                   <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                  <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+                  <li class="mb-2">
+                    <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
+                  </li>
                   <% unless booking.review %>
                     <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
                   <% else %>
