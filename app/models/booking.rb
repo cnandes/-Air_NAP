@@ -23,6 +23,17 @@ class Booking < ApplicationRecord
     duration_hours * 60
   end
 
+  def duration_display
+    remaining_minutes = (duration_hours - duration_hours.to_i) * 60
+    if duration_mins < 60
+      "#{duration_mins.to_i} minutes"
+    elsif remaining_minutes.to_i.zero?
+      "#{duration_hours.to_i} hrs"
+    else
+      "#{duration_hours.to_i} hrs #{remaining_minutes.to_i} minutes"
+    end
+  end
+
   def confirmed?
     confirmation_status == "confirmed"
   end
@@ -48,8 +59,8 @@ class Booking < ApplicationRecord
   def end_time_after_start_time
     return if end_time.blank? || start_time.blank?
 
-    if end_time < start_time
-      errors.add(:end_time, "must be after the start date")
-    end
+    return unless end_time < start_time
+
+    errors.add(:end_time, "must be after the start date")
   end
 end
