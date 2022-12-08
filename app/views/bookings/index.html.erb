@@ -16,7 +16,7 @@
                     <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
                   </li>
                   <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
-                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_mins.to_i} minutes" %></li>
+                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
                   <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
                   <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
                   <% unless booking.confirmation_status == 'cancelled' %>
@@ -49,7 +49,7 @@
                     <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
                   </li>
                   <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
-                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_mins.to_i} minutes" %></li>
+                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
                   <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
                   <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
                   <% if (booking.confirmation_status == 'requested' && !booking.started?)  %>
@@ -83,7 +83,7 @@
                     <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
                   </li>
                   <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
-                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_mins.to_i} minutes" %></li>
+                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
                   <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
                   <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
                   <% unless booking.review %>
