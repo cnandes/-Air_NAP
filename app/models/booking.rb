@@ -50,12 +50,16 @@ class Booking < ApplicationRecord
     confirmation_status == 'cancelled'
   end
 
+  def requested?
+    confirmation_status == 'requested'
+  end
+
   def started?
-    DateTime.now > start_time
+    DateTime.now.new_offset(0) > start_time
   end
 
   def ended?
-    DateTime.now > end_time
+    DateTime.now.new_offset(0) > end_time
   end
 
   def start_time_formatted
