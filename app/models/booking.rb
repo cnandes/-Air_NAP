@@ -64,8 +64,9 @@ class Booking < ApplicationRecord
 
   def self.cancel_check
     all.each do |booking|
-      if Time.parse(DateTime.now.new_offset(0).to_s) >= Time.parse(booking.start_time.to_s)# + 600
+      if Time.parse(DateTime.now.new_offset(0).to_s) >= Time.parse(booking.start_time.to_s) + 600
         booking.confirmation_status = 'cancelled' # not working for some reason
+        booking.save!
       end
     end
   end
