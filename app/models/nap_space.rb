@@ -4,6 +4,8 @@ class NapSpace < ApplicationRecord
 
   has_many :reviews, through: :bookings
 
+  has_one_attached :image_url
+
   validates :address, presence: true
   validates :address, uniqueness: true
   validates :cost_per_hr, presence: true
