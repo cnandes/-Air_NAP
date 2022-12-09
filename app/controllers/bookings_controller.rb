@@ -14,9 +14,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
-  def show
-  end
-
   def create
     @user = current_user
     @nap_space = NapSpace.find(params[:nap_space_id])
@@ -36,7 +33,7 @@ class BookingsController < ApplicationController
     return if @booking.cancelled? || @booking.started?
 
     @booking.confirmation_status = 'confirmed'
-    redirect_to booking_path(@booking) if @booking.save!
+    redirect_to bookings_path if @booking.save!
   end
 
   def decline
@@ -44,7 +41,7 @@ class BookingsController < ApplicationController
     return if @booking.cancelled? || @booking.started?
 
     @booking.confirmation_status = 'declined'
-    redirect_to booking_path(@booking) if @booking.save!
+    redirect_to bookings_path if @booking.save!
   end
 
   def cancel
@@ -52,7 +49,7 @@ class BookingsController < ApplicationController
     return if @booking.started?
 
     @booking.confirmation_status = 'cancelled'
-    redirect_to booking_path(@booking) if @booking.save
+    redirect_to bookings_path if @booking.save
   end
 
   private

@@ -34,11 +34,19 @@ class Booking < ApplicationRecord
     end
   end
 
+  def confirmation_status_styling
+    return 'secondary' if ended?
+    return 'success' if confirmed?
+    return 'primary' if confirmation_status == 'requested'
+
+    return 'danger'
+  end
+
   def confirmed?
     confirmation_status == "confirmed"
   end
 
-  def cancelled
+  def cancelled?
     confirmation_status == 'cancelled'
   end
 
