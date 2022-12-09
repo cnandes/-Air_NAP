@@ -43,15 +43,23 @@ class Booking < ApplicationRecord
   end
 
   def started?
-    DateTime.now > start_time
+    DateTime.now.new_offset(0) > start_time
   end
 
   def ended?
-    DateTime.now > end_time
+    DateTime.now.new_offset(0) > end_time
   end
 
   def start_time_formatted
     start_time.strftime("%I:%M%p, %m/%d/%Y")
+  end
+
+  def self.cancel_check
+    all.each do |booking|
+      if Time.parse(DateTime.now.new_offset(0).to_s) >= Time.parse(booking.start_time.to_s)# + 600
+        booking.confirmation_status = 'cancelled' # not working for some reason
+      end
+    end
   end
 
   private

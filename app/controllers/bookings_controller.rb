@@ -1,8 +1,9 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[show confirm decline cancel user_is_host?]
+  before_action :cancel_check, only: %i[index show confirm decline cancel]
 
   def index
-    @bookings = current_user.bookings.order(:start_time).reject(&:started?)
+    @bookings = current_user.bookings.order(:start_time)#.reject(&:started?)
     @bookings_to_approve = current_user.nap_spaces.map(&:bookings).flatten.reject(&:started?)
     @bookings_past = current_user.bookings.select(&:ended?).select(&:confirmed?)
     @review = Review.new
@@ -66,5 +67,9 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+  end
+
+  def cancel_check
+    Booking.cancel_check
   end
 end
