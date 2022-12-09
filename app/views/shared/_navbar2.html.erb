@@ -47,9 +47,9 @@
               <button type="button" class=" btn btn-icon btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="material-icons">&#xE87C;</span></button>
               <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-2 py-2" style="width: 100px;">
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Bookings'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Bookings'.html_safe, bookings_path, class: "dropdown-item text-dark" %>
                 <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My NapSpaces'.html_safe, "#", class: "dropdown-item text-dark" %>
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Account'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> Edit My Account'.html_safe, edit_user_registration_path, class: "dropdown-item text-dark" %>
               </div>
             </div>
           </li>
@@ -64,19 +64,18 @@
           <ul class="navigation-menu ">
             <%# /* ---------------------------------- home ---------------------------------- */ %>
             <li> <%= link_to '<i class="fas fa-home fa-sm me-1"></i> home'.html_safe, root_path , class: "sub-menu-item" %></li>
-            <%# /* -------------------------------- messages -------------------------------- */ %>
-            <li> <%= link_to '<i class="fas fa-comment-alt fa-sm me-1"></i> NapSpaces'.html_safe,  nap_spaces_path , class: "sub-menu-item" %></li>
-            <%# /* -------------------------------- bookings -------------------------------- */ %>
-            <li> <%= link_to '<i class="fas fa-solid fa-book fa-sm me-1"></i> Bookings'.html_safe,  bookings_path , class: "sub-menu-item" %></li>
-            <%# /* -------------------------- other drop down list -------------------------- */ %>
+            <%# /* -------------------------------- NapSoace -------------------------------- */ %>
             <li class="has-submenu parent-menu-item">
-              <a href="javascript:void(0)"><i class="fas fa-couch fa-sm me-1"></i> Other</a><span class="menu-arrow"></span>
-              <%# /* ----------------------------- other sub menus ---------------------------- */ %>
+              <a href="javascript:void(0)"><i class="fas fa-comment-alt fa-sm me-1"></i> NapSpaces</a><span class="menu-arrow"></span>
+              <%# /* ----------------------------- NapSpace submenu ---------------------------- */ %>
               <ul class="submenu">
-                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> [option 01]'.html_safe, "#", class: "sub-menu-item" %></li>
-                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> [option 02]'.html_safe, "#", class: "sub-menu-item" %></li>
+                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> Find a NapSpace'.html_safe, nap_spaces_path, class: "sub-menu-item" %></li>
+                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> List a NapSpace'.html_safe, new_nap_space_path, class: "sub-menu-item" %></li>
+                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> My NapSpaces'.html_safe, "#", class: "sub-menu-item" %></li>
               </ul>
             </li>
+            <%# /* -------------------------------- bookings -------------------------------- */ %>
+            <li> <%= link_to '<i class="fas fa-solid fa-book fa-sm me-1"></i> Bookings'.html_safe,  bookings_path , class: "sub-menu-item" %></li>
           </ul>
           <!--end navigation options menu-->
         </div>
