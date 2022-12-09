@@ -1,5 +1,26 @@
-<%= simple_form_for [ booking, review ], url: booking_reviews_path(booking), method: :post do |form| %>
-  <%= form.input :content, as: :text %>
-  <%= form.input :rating%>
-  <%= form.button :submit, class: "btn btn-primary" %>
-<% end %>
+<br>
+<br>
+<br>
+<section class="bg-home d-flex align-items-center">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="card mx-4 shadow rounded border-0 ">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-3">Leave a Review</h4>
+          <%# <form class="login-form mt-4"> %>
+          <%= simple_form_for [ booking, review ], url: booking_reviews_path(booking), method: :post do |form| %>
+            <%= form.input :rating%>
+            <%= form.input :content, as: :string, input_html: { }%>
+            <%= form.button :submit, class: "btn btn-primary" %>
+          <% end %>
+          <!--end col-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--end container-->
+</section>
+<!--end section-->
+<!-- Hero End -->
