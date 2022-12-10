@@ -1,15 +1,19 @@
-
-
-<section class="bg-auth-home bg-circle-gradiant d-table w-100">
-  <div class="bg-overlay bg-overlay-white"></div>
+<!-- Hero Start -->
+<section class="bg-home d-flex align-items-center">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8">
-        <div class="card shadow rounded border-0 mt-4">
+    <div class="row align-items-center">
+      <div class="col-lg-7 col-md-5">
+        <div class="me-lg-1">
+          <%= image_tag("login_image2.png", class: "img-fluid d-block mx-auto") %>
+          <div class="login img-fluid d-block mx-auto"></div>
+        </div>
+      </div>
+      <div class="col-lg-5 col-md-7">
+        <div class="card login-page shadow rounded border-0">
           <div class="card-body">
-            <h4 class="card-title text-center">Signup</h4>
-            <%# <form class="login-form mt-4"> %>
+            <h4 class="card-title text-center mb-3">Sign Up</h4>
             <div class="row">
+              <%# <form class="login-form mt-4"> %>
               <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false}}) do |f| %>
                 <%= f.error_notification %>
                 <div class="form-inputs">
@@ -31,14 +35,25 @@
                   <%= f.input :avatar_url %>
                 </div>
                 <div class="form-actions">
-                  <%= f.button :submit, "Sign up" %>
+                  <div class="col-lg-12 mb-0">
+                    <div class="d-grid">
+                      <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
+                    </div>
+                  </div>
                 </div>
               <% end %>
-              <%= render "devise/shared/links" %>
+            </div>
+            <!--end col-->
+            <div class="col-12 text-center">
+              <p class="mb-0 mt-3"><small class="text-dark me-2">Already have an account ?</small> <%= link_to  'Log in', new_user_session_path%></p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+<!--end container-->
 </section>
+<!--end section-->
+<!-- Hero End -->

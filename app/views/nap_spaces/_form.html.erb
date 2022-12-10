@@ -1,23 +1,45 @@
-<%= simple_form_for(@nap_space) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-input">
-    <%= f.input :description %>
+<section class="bg-home d-flex align-items-center">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-5">
+        <div class="me-lg-1">
+          <%= image_tag("login_image.png", class: "img-fluid d-block mx-auto") %>
+          <div class="login img-fluid d-block mx-auto"></div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-7">
+        <div class="card login-page shadow rounded border-0">
+          <div class="card-body">
+            <h4 class="card-title text-center mb-3">List your NapSpace</h4>
+            <div class="row">
+              <%= simple_form_for(@nap_space) do |f| %>
+                <%= f.error_notification %>
+                <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+                <div class="form-input">
+                  <%= f.input :description %>
+                </div>
+                <div class="form-input">
+                  <%= f.input :address %>
+                </div>
+                <div class="form-input">
+                  <%= f.input :cost_per_hr %>
+                </div>
+                <div class="form-input">
+                  <%= f.input :image_url, as: :file  %>
+                </div>
+                <div class="form-input">
+                  <div class="form-actions">
+                    <div class="col-lg-12 mb-0">
+                      <div class="d-grid"> <%= f.button :submit, "Create NapSpace", class: "btn btn-primary" %>  <%= link_to "Back", root_path , class: "btn btn-secondary mt-2" %> </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-input">
-    <%= f.input :address %>
-  </div>
-
-  <div class="form-input">
-    <%= f.input :cost_per_hr %>
-  </div>
-  <div class="form-input">
-    <%= f.input :image_url %>
-  </div>
-  <div class="form-input">
-    <%= f.button :submit %>
-  </div>
-
-<% end %>
+</section>
+<!--end container-->
