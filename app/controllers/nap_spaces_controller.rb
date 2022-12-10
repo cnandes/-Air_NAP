@@ -22,7 +22,7 @@ class NapSpacesController < ApplicationController
   end
 
   def index_by_user
-    @nap_spaces = NapSpace.where(@user == :user)
+    @nap_spaces = NapSpace.where({ user_id: @user.id })
   end
 
   def show
