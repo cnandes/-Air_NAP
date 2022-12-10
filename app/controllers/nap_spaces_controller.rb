@@ -6,7 +6,16 @@ class NapSpacesController < ApplicationController
   end
 
   def index
-    @nap_spaces = NapSpace.all
+    if params[:query].present?
+      sql_query = <<~SQL
+        nap_spaces.address @@ :query
+        OR nap_spaces.description @@ :query
+      SQL
+      @nap_spaces = NapSpace.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @nap_spaces = NapSpace.all
+    end
+
     @markers = @nap_spaces.geocoded.map do |nap_space|
       marker_info(nap_space)
     end
