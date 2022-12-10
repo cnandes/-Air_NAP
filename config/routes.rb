@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :nap_spaces do
     resources :bookings, only: %i[new create]
   end
-  resources :bookings, only: %i[index show] do
+  resources :bookings, only: %i[index] do
     resources :reviews, only: %i[index show new create]
   end
 

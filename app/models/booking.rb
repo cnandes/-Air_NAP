@@ -34,6 +34,14 @@ class Booking < ApplicationRecord
     end
   end
 
+  def confirmation_status_styling
+    return 'secondary' if ended?
+    return 'success' if confirmed?
+    return 'primary' if confirmation_status == 'requested'
+
+    return 'danger'
+  end
+
   def confirmed?
     confirmation_status == "confirmed"
   end
@@ -42,12 +50,16 @@ class Booking < ApplicationRecord
     confirmation_status == 'cancelled'
   end
 
+  def requested?
+    confirmation_status == 'requested'
+  end
+
   def started?
-    DateTime.now > start_time
+    DateTime.now.new_offset(0) > start_time
   end
 
   def ended?
-    DateTime.now > end_time
+    DateTime.now.new_offset(0) > end_time
   end
 
   def start_time_formatted
