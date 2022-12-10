@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   def index
     # removed reject filter from @bookings as it will interfere w/ soon to be auto cancelled bookings (takes 10mins)
     # ie. won't display bookings which have started while those booking's 'confirmation_status' is 'requested'
-    @bookings = current_user.bookings.order(:start_time)#.reject(&:started?)
+    @bookings = current_user.bookings.order(:start_time).reject(&:ended?)
     @bookings_to_approve = current_user.nap_spaces.map(&:bookings).flatten.reject(&:started?)
     @bookings_past = current_user.bookings.select(&:ended?).select(&:confirmed?)
     @review = Review.new
