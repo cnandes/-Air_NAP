@@ -16,8 +16,8 @@
                     <li class="list-inline-item me-2 mb-0">   <%= link_to 'Read More <i class="fa-solid fa-chevron-right  fa-sm"></i>'.html_safe, nap_space_path(nap_space) %></li>
                     <li>
                       <div class="d-flex justify-content-start align-items-center">
-                        <%= link_to "Edit", edit_nap_space_path(nap_space), class: "btn btn-warning  mt-2"  %>
-                        <div class="m-1"></div>
+                        <%= link_to "Edit", edit_nap_space_path(nap_space), class: "btn btn-warning  mt-2" , style: "margin-right: 4px;" %>
+                        <%# <div class="m-"></div> %>
                         <%= link_to "Delete",
                               nap_space_path(nap_space),
                               data: {turbo_method: :delete, turbo_confirm: "Are you sure?" },
