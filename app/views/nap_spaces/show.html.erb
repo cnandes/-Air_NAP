@@ -15,16 +15,17 @@
       <div class="col-lg-6 col-md-6">
         <%= render @nap_space %>
         <%= link_to "Book this space", new_nap_space_booking_path(@nap_space) , class: "btn btn-primary mt-2" %>
-        <% if @nap_space.user == @current_user %>
-          <%= link_to "Edit NapSpace", edit_nap_space_path(@nap_space), class: "btn btn-warning  mt-2"  %>
-          <br>
-          <%= link_to "Delete Nap Space",
-                nap_space_path(@nap_space),
-                data: {turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "btn btn-danger  mt-2"
-              %>
-          <br>
-        <% end %>
+
+
+        <%= link_to "Edit NapSpace", edit_nap_space_path(@nap_space), class: "btn btn-warning  mt-2"  %>
+        <br>
+        <%= link_to "Delete Nap Space",
+              nap_space_path(@nap_space),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "btn btn-danger  mt-2"
+            %>
+        <br>
+
         <%= link_to "Back to search 🔎", nap_spaces_path , class: "btn btn-secondary mt-2" %>
       </div>
     </div>
