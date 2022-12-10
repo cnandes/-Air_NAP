@@ -1,7 +1,7 @@
 class NapSpacesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
   before_action :set_nap_space, only: %i[show edit update destroy]
-  before_action :set_user, only: %i[show create]
+  before_action :set_user, only: %i[show create index_by_user]
   def home
   end
 
@@ -19,6 +19,10 @@ class NapSpacesController < ApplicationController
     @markers = @nap_spaces.geocoded.map do |nap_space|
       marker_info(nap_space)
     end
+  end
+
+  def index_by_user
+    @nap_spaces = NapSpace.where(@user == :user)
   end
 
   def show

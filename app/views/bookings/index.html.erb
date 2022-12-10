@@ -1,107 +1,142 @@
-<h1>Bookings</h1><br />
-
-  <h3>My Upcoming Naps</h3>
-  <div class="row">
-    <% @bookings.each do |booking| %>
-      <div class="col-lg-4 col-md-6 mb-4 pb-22">
-        <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
-          <div class="position-relative">
-            <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
-            <div class="overlay rounded-top"></div>
-            <div class="card-body content">
-              <h3><%= link_to "#{booking.nap_space.description}", nap_space_path(booking.nap_space), {:class => "link-text-dark card-title title"}%></h3>
-              <div class="post-meta d-flex justify-content-between mt-3">
-                <ul class="list-unstyled mb-0">
-                  <li class="list-inline-item me-2 mb-0">
-                    <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
-                  </li>
-                  <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
-                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
-                  <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                  <li class="mb-2">
-                    <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
-                  </li>
-                  <% unless booking.confirmation_status == 'cancelled' %>
-                      <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
-                  <% end %>
-                </ul>
+<h1 class="card-title title text-dark">Bookings</h1>
+<br>
+<div class="accordion"id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header"id="panelsStayOpen-headingOne"><button class="accordion-button"type="button"data-bs-toggle="collapse"data-bs-target="#panelsStayOpen-collapseOne"aria-expanded="true"aria-controls="panelsStayOpen-collapseOne">My Upcoming Naps </button></h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body">
+        <div class="row">
+          <% if @bookings.empty? %>
+            <p class="text-muted readmore"> You have no upcoming bookings.</p>
+          <% end %>
+          <% @bookings.each do |booking| %>
+            <div class="col-lg-4 col-md-6 mb-4 pb-22">
+              <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+                <div class="position-relative">
+                  <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
+                  <div class="overlay rounded-top"></div>
+                  <div class="card-body content">
+                    <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                    <div class="post-meta d-flex justify-content-between mt-3">
+                      <ul class="list-unstyled mb-0">
+                        <li class="list-inline-item me-2 mb-0">
+                          <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
+                        </li>
+                        <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
+                        <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
+                        <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
+                        <li class="mb-2">
+                          <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
+                        </li>
+                        <% unless booking.confirmation_status == 'cancelled' %>
+                          <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-
-  <hr>
-
-  <h3>My Upcoming Host Bookings</h3>
-  <div class="row">
-    <% @bookings_to_approve.each do |booking| %>
-      <div class="col-lg-4 col-md-6 mb-4 pb-22">
-        <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
-          <div class="position-relative">
-            <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
-            <div class="overlay rounded-top"></div>
-            <div class="card-body content">
-              <h3><%= link_to "#{booking.nap_space.description}", nap_space_path(booking.nap_space), {:class => "link-text-dark card-title title"}%></h3>
-              <div class="post-meta d-flex justify-content-between mt-3">
-                <ul class="list-unstyled mb-0">
-                  <li class="list-inline-item me-2 mb-0">
-                    <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
-                  </li>
-                  <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
-                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
-                  <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                  <li class="mb-2">
-                    <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
-                  </li>
-                  <% if (booking.confirmation_status == 'requested' && !booking.started?)  %>
-                    <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
-                    <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
-                  <% end %>
-                </ul>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+        My Upcoming Host Bookings
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+      <div class="accordion-body">
+        <div class="row">
+          <% if @bookings_to_approve.empty? %>
+            <p class="text-muted readmore"> You have no bookings to approve.</p>
+          <% end %>
+          <% @bookings_to_approve.each do |booking| %>
+            <div class="col-lg-4 col-md-6 mb-4 pb-22">
+              <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+                <div class="position-relative">
+                  <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
+                  <div class="overlay rounded-top"></div>
+                  <div class="card-body content">
+                    <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                    <div class="post-meta d-flex justify-content-between mt-3">
+                      <ul class="list-unstyled mb-0">
+                        <li class="list-inline-item me-2 mb-0">
+                          <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
+                        </li>
+                        <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
+                        <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
+                        <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
+                        <li class="mb-2">
+                          <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
+                        </li>
+                        <% if (booking.confirmation_status == 'requested' && !booking.started?)  %>
+                          <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
+                          <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-
-  <hr>
-
-  <h3>Your Past Bookings</h3>
-  <div class="row">
-    <% @bookings_past.each do |booking| %>
-      <div class="col-lg-4 col-md-6 mb-4 pb-22">
-        <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
-          <div class="position-relative">
-            <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
-            <div class="overlay rounded-top"></div>
-            <div class="card-body content">
-              <h3><%= link_to "#{booking.nap_space.description}", nap_space_path(booking.nap_space), {:class => "link-text-dark card-title title"}%></h3>
-              <div class="post-meta d-flex justify-content-between mt-3">
-                <ul class="list-unstyled mb-0">
-                  <li class="list-inline-item me-2 mb-0">
-                    <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
-                  </li>
-                  <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
-                  <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
-                  <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                  <li class="mb-2">
-                    <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
-                  </li>
-                  <% unless booking.review %>
-                    <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
-                  <% else %>
-                    <p>Thank you for your review!</p>
-                  <% end %>
-                </ul>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+        Your Past Bookings
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingThree">
+      <div class="accordion-body">
+        <div class="row">
+          <% if @bookings_past.empty? %>
+            <p class="text-muted readmore"> You have no past bookings.</p>
+          <% end %>
+          <% @bookings_past.each do |booking| %>
+            <div class="col-lg-4 col-md-6 mb-4 pb-22">
+              <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
+                <div class="position-relative">
+                  <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
+                  <div class="overlay rounded-top"></div>
+                  <div class="card-body content">
+                    <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                    <div class="post-meta d-flex justify-content-between mt-3">
+                      <ul class="list-unstyled mb-0">
+                        <li class="list-inline-item me-2 mb-0">
+                          <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
+                        </li>
+                        <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
+                        <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
+                        <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
+                        <li class="mb-2">
+                          <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
+                        </li>
+                        <% unless booking.review %>
+                          <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
+                        <% else %>
+                          <p>Thank you for your review!</p>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
+</div>
+<br>
+<br>
+<br>
+<br>

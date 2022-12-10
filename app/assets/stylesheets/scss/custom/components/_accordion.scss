@@ -6,7 +6,7 @@
   .accordion-item {
     overflow: hidden;
     border: 0;
-    box-shadow: $shadow;
+    // box-shadow: $shadow;
 
     .accordion-button {
       font-weight: 600;
@@ -19,10 +19,10 @@
       }
 
       &:before {
-        content: '\F0143';
+        content: "\f13a";
+        font: var(--fa-font-solid);
         display: block;
-        font-family: 'Material Design Icons';
-        font-size: 16px;
+        font-size: 20px;
         color: $primary;
         position: absolute;
         right: 20px;
