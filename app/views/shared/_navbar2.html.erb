@@ -52,7 +52,7 @@
                 <span class="material-icons">&#xE87C;</span></button>
               <div class="dropdown-menu dd-menu dropdown-menu-end bg-white shadow rounded border-0 mt-2 py-2" style="width: 100px;">
                 <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My Bookings'.html_safe, bookings_path, class: "dropdown-item text-dark" %>
-                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My NapSpaces'.html_safe, "#", class: "dropdown-item text-dark" %>
+                <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> My NapSpaces'.html_safe, user_nap_spaces_path, class: "dropdown-item text-dark" %>
                 <%= link_to '<i class="fas fa-couch fa-sm align-middle me-1"></i> Edit My Account'.html_safe, edit_user_registration_path, class: "dropdown-item text-dark" %>
               </div>
             </div>
@@ -75,7 +75,7 @@
               <ul class="submenu">
                 <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> Find a NapSpace'.html_safe, nap_spaces_path, class: "sub-menu-item" %></li>
                 <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> List a NapSpace'.html_safe, new_nap_space_path, class: "sub-menu-item" %></li>
-                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> My NapSpaces'.html_safe, "#", class: "sub-menu-item" %></li>
+                <li><%= link_to '<i class="fas fa-couch fa-sm me-1"></i> My NapSpaces'.html_safe, user_nap_spaces_path, class: "sub-menu-item" %></li>
               </ul>
             </li>
             <%# /* -------------------------------- bookings -------------------------------- */ %>
