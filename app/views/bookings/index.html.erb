@@ -17,7 +17,9 @@
                   <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
                   <div class="overlay rounded-top"></div>
                   <div class="card-body content">
-                    <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                    <h3 class="card-title title text-dark">
+                      <%= link_to booking.nap_space.description, nap_space_path(booking.nap_space), class: "link-text-dark" %>
+                    </h3>
                     <div class="post-meta d-flex justify-content-between mt-3">
                       <ul class="list-unstyled mb-0">
                         <li class="list-inline-item me-2 mb-0">
@@ -64,7 +66,9 @@
                   <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
                   <div class="overlay rounded-top"></div>
                   <div class="card-body content">
-                    <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                    <h3 class="card-title title text-dark">
+                      <%= link_to booking.nap_space.description, nap_space_path(booking.nap_space), class: "link-text-dark" %>
+                    </h3>
                     <div class="post-meta d-flex justify-content-between mt-3">
                       <ul class="list-unstyled mb-0">
                         <li class="list-inline-item me-2 mb-0">
@@ -112,7 +116,9 @@
                   <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
                   <div class="overlay rounded-top"></div>
                   <div class="card-body content">
-                    <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+                    <h3 class="card-title title text-dark">
+                      <%= link_to booking.nap_space.description, nap_space_path(booking.nap_space), class: "link-text-dark" %>
+                    </h3>
                     <div class="post-meta d-flex justify-content-between mt-3">
                       <ul class="list-unstyled mb-0">
                         <li class="list-inline-item me-2 mb-0">
