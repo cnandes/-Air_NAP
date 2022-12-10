@@ -4,3 +4,14 @@
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
+.thumbpost {
+  /* Do not scale the image */
+  /* Center the image within the element */
+  object-fit: cover;
+  object-position: center;
+  max-width: 400px;
+  max-height: 100%;
+  margin-bottom: 1rem;
+}
