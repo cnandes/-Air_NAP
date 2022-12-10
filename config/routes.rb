@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/bookings/:id/confirm', to: 'bookings#confirm', as: :booking_confirm
   get '/bookings/:id/decline', to: 'bookings#decline', as: :booking_decline
   get '/bookings/:id/cancel', to: 'bookings#cancel', as: :booking_cancel
-
+  get '/my_nap_spaces/', to: 'nap_spaces#index_by_user', as: :user_nap_spaces
   # get "/nap_space", to: "nap_spaces#home"
   # get "/nap_space/index", to: "nap_spaces#index"
 
