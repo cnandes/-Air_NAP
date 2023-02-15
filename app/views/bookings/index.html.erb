@@ -8,7 +8,7 @@
       <div class="accordion-body">
         <div class="row">
           <% if @bookings.empty? %>
-            <p class="text-muted readmore"> You have no upcoming bookings.</p>
+            <p class="text-muted readmore"> You have no upcoming naps.</p>
           <% end %>
           <% @bookings.each do |booking| %>
             <%= render "booking", booking: booking, tab: "upcoming" %>
@@ -43,14 +43,14 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="panelsStayOpen-headingThree">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-        Your Past Bookings
+        Your Past Naps
       </button>
     </h2>
     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingThree">
       <div class="accordion-body">
         <div class="row">
           <% if @bookings_past.empty? %>
-            <p class="text-muted readmore"> You have no past bookings.</p>
+            <p class="text-muted readmore"> You have no past naps.</p>
           <% end %>
           <% @bookings_past.each do |booking| %>
             <%= render "booking", booking: booking, tab: "past" %>
