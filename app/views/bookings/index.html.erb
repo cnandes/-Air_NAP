@@ -19,25 +19,27 @@
   </div>
 
   <%# display upcoming host bookings %>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-        My Upcoming Host Bookings
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-      <div class="accordion-body">
-        <div class="row">
-          <% if @bookings_to_approve.empty? %>
-            <p class="text-muted readmore"> You have no bookings to approve.</p>
-          <% end %>
-          <% @bookings_to_approve.each do |booking| %>
-            <%= render "booking", booking: booking, tab: "upcoming-host" %>
-          <% end %>
+  <% unless current_user.nap_spaces.empty? %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+          My Upcoming Host Bookings
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
+        <div class="accordion-body">
+          <div class="row">
+            <% if @bookings_to_approve.empty? %>
+              <p class="text-muted readmore"> You have no bookings to approve.</p>
+            <% end %>
+            <% @bookings_to_approve.each do |booking| %>
+              <%= render "booking", booking: booking, tab: "upcoming-host" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <%# display all past bookings %>
   <div class="accordion-item">
@@ -61,23 +63,22 @@
   </div>
 
   <%# display all past host bookings %>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-        Your Past Host Bookings
-      </button>
-    </h2>
-    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingFour">
-      <div class="accordion-body">
-        <div class="row">
-          <% if @bookings_past_host.empty? %>
-            <p class="text-muted readmore"> You have no past host bookings.</p>
-          <% end %>
-          <% @bookings_past_host.each do |booking| %>
-            <%= render "booking", booking: booking, tab: "past-host" %>
-          <% end %>
+  <% unless @bookings_past_host.empty? %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+          Your Past Host Bookings
+        </button>
+      </h2>
+      <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingFour">
+        <div class="accordion-body">
+          <div class="row">
+            <% @bookings_past_host.each do |booking| %>
+              <%= render "booking", booking: booking, tab: "past-host" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
