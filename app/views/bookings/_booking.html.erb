@@ -1,21 +1,51 @@
-<%# NOT CURRENTLY USED ANYWHERE - COULD BE NICE IN FUTURE TO KEEP CODE DRY %>
-
 <div class="col-lg-4 col-md-6 mb-4 pb-22">
   <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
     <div class="position-relative">
-      <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
-      <div class="overlay rounded-top"></div>
+      <h2 class="card-header bg-<%= booking.confirmation_status_styling %> text-light text-center"><%= booking.confirmation_status.capitalize %></h2>
+      <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img rounded-0", height: 300 %>
+      <div class="overlay"></div>
       <div class="card-body content">
-        <h3 class="card-title title text-dark">  <%= booking.nap_space.description %></h3>
+        <h3 class="card-title title text-dark">
+          <%= link_to booking.nap_space.description, nap_space_path(booking.nap_space), class: "link-text-dark" %>
+        </h3>
         <div class="post-meta d-flex justify-content-between mt-3">
           <ul class="list-unstyled mb-0">
             <li class="list-inline-item me-2 mb-0">
               <p class="text-muted readmore"> <%= booking.nap_space.address %></p>
             </li>
-            <li class=" text-muted mb-2"><%= "Start Time: $#{booking.start_time}" %></li>
-            <li class=" text-muted mb-2"><%= "Duration: $#{booking.duration_hours}hours" %></li>
-            <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-            <li class=" text-muted mb-2"><%= booking.confirmation_status %></li>
+            <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
+            <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
+            <li class=" text-muted mb-2"><%= "Total Cost: $#{booking.total_cost}" %></li>
+
+            <%# Cancel button for user that booked %>
+            <% if booking.confirmation_status != 'cancelled' && booking.user == current_user && tab == "upcoming"%>
+              <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+            <% end %>
+
+            <%# Confirm/decline/cancel buttons for Host %>
+            <% if (booking.confirmation_status == 'requested' && !booking.started? && tab == "upcoming-host")  %>
+              <%= link_to "Confirm", booking_confirm_path(booking), class: "btn btn-primary mt-2" %>
+              <%= link_to "Decline", booking_decline_path(booking), class: "btn btn-warning  mt-2" %>
+            <% elsif booking.confirmation_status == 'confirmed' && !booking.started? && tab == "upcoming-host" %>
+              <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+            <% end %>
+
+            <%# Reviews for past naps %>
+            <% if tab == "past" %>
+              <% unless booking.review %>
+                <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
+              <% else %>
+                <div class="card rounded border-0 shadow overflow-hidden pt-2" style="width: 18rem;">
+                  <div class="card-body">
+                    <p class="card-text">
+                      <% booking.review.rating.times do %>
+                        <i class="fa fa-star text-warning" aria-hidden="true" ></i>
+                      <% end %></p>
+                    <p class="card-text"><em><%= booking.review.content %></em></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </ul>
         </div>
       </div>
