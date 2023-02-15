@@ -18,8 +18,10 @@
             <li class=" text-muted mb-2"><%= "Total Cost: $#{booking.total_cost}" %></li>
 
             <%# Cancel button for user that booked %>
-            <% if booking.confirmation_status != 'cancelled' && booking.user == current_user && tab == "upcoming"%>
-              <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+            <% if booking.user == current_user && tab == "upcoming" %>
+              <% unless booking.confirmation_status == 'cancelled' || booking.confirmation_status == 'declined' %>
+                <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
+              <% end %>
             <% end %>
 
             <%# Confirm/decline/cancel buttons for Host %>
@@ -47,6 +49,7 @@
               <% end %>
             <% end %>
 
+            <%# Reviews for past host bookings %>
             <% if tab == "past-host" && booking.review %>
               <div class="card rounded border-0 shadow overflow-hidden pt-2" style="width: 18rem;">
                 <div class="card-body">
