@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
     @bookings = current_user.bookings.order(:start_time).reject(&:ended?)
     @bookings_to_approve = current_user.nap_spaces.map(&:bookings).flatten.reject(&:started?)
     @bookings_past = current_user.bookings.select(&:ended?).select(&:confirmed?)
+    @bookings_past_host = current_user.nap_spaces.map(&:bookings).flatten.select(&:ended?).select(&:confirmed?)
     @review = Review.new
   end
 

@@ -46,6 +46,18 @@
                 </div>
               <% end %>
             <% end %>
+
+            <% if tab == "past-host" && booking.review %>
+              <div class="card rounded border-0 shadow overflow-hidden pt-2" style="width: 18rem;">
+                <div class="card-body">
+                  <p class="card-text">
+                    <% booking.review.rating.times do %>
+                      <i class="fa fa-star text-warning" aria-hidden="true" ></i>
+                    <% end %></p>
+                  <p class="card-text"><em><%= booking.review.content %></em></p>
+                </div>
+              </div>
+            <% end %>
           </ul>
         </div>
       </div>

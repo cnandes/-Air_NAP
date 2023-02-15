@@ -59,4 +59,25 @@
       </div>
     </div>
   </div>
+
+  <%# display all past host bookings %>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+        Your Past Host Bookings
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show " aria-labelledby="panelsStayOpen-headingFour">
+      <div class="accordion-body">
+        <div class="row">
+          <% if @bookings_past_host.empty? %>
+            <p class="text-muted readmore"> You have no past host bookings.</p>
+          <% end %>
+          <% @bookings_past_host.each do |booking| %>
+            <%= render "booking", booking: booking, tab: "past-host" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
