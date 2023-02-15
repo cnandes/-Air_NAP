@@ -1,2 +1,5 @@
 <h5><%= nap_space.description %></h5>
 <p><%= nap_space.address %></p>
+<% if current_page?(nap_spaces_path) %>
+  <%= link_to "View details", nap_space_path(nap_space) %>
+<% end %>
