@@ -63,7 +63,7 @@ class Booking < ApplicationRecord
   end
 
   def start_time_formatted
-    start_time.strftime("%I:%M%p, %m/%d/%Y")
+    start_time.to_fs(:long_ordinal)
   end
 
   private

@@ -14,8 +14,9 @@
             <div class="col-lg-4 col-md-6 mb-4 pb-22">
               <div class="card blog blog-primary rounded border-0 shadow overflow-hidden">
                 <div class="position-relative">
-                  <%= cl_image_tag booking.nap_space.image_url.key, class: "card-img-top", height: 300 %>
-                  <div class="overlay rounded-top"></div>
+                  <h2 class="card-header bg-<%= booking.confirmation_status_styling %> text-light text-center"><%= booking.confirmation_status.capitalize %></h2>
+                  <%= cl_image_tag booking.nap_space.image_url.key, height: 300 %>
+                  <div class="overlay"></div>
                   <div class="card-body content">
                     <h3 class="card-title title text-dark">
                       <%= link_to booking.nap_space.description, nap_space_path(booking.nap_space), class: "link-text-dark" %>
@@ -27,10 +28,7 @@
                         </li>
                         <li class=" text-muted mb-2"><%= "Start Time: #{booking.start_time_formatted}" %></li>
                         <li class=" text-muted mb-2"><%= "Duration: #{booking.duration_display}" %></li>
-                        <li class=" text-muted mb-2"><%= "Cost: $#{booking.total_cost}" %></li>
-                        <li class="mb-2">
-                          <span class="badge bg-<%= booking.confirmation_status_styling %>"><%= booking.confirmation_status %></span>
-                        </li>
+                        <li class=" text-muted mb-2"><%= "Total Cost: $#{booking.total_cost}" %></li>
                         <% unless booking.confirmation_status == 'cancelled' %>
                           <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger  mt-2" %>
                         <% end %>
@@ -133,7 +131,15 @@
                         <% unless booking.review %>
                           <%= link_to "Leave a review", new_booking_review_path(booking), class: "btn btn-primary  mt-2"  %>
                         <% else %>
-                          <p>Thank you for your review!</p>
+                          <div class="card rounded border-0 shadow overflow-hidden pt-2" style="width: 18rem;">
+                            <div class="card-body">
+                              <p class="card-text">
+                                <% booking.review.rating.times do %>
+                                  <i class="fa fa-star text-warning" aria-hidden="true" ></i>
+                                <% end %></p>
+                              <p class="card-text"><em><%= booking.review.content %></em></p>
+                            </div>
+                          </div>
                         <% end %>
                       </ul>
                     </div>
