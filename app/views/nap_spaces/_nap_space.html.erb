@@ -6,13 +6,12 @@
         <div class="card-body content">
           <h3 class="card-title title text-dark">  <%= nap_space.description %></h3>
           <ul class="list-unstyled mb-0">
-            <li class="list-inline-item me-2 mb-0 "><%= cl_image_tag nap_space.image_url.key, class: "thumbpost" %></li>
+            <li class="list-inline-item me-2 mb-0 "><%= cl_image_tag nap_space.image_url.key, class: "thumbpost rounded" %></li>
             <li class="list-inline-item me-2 mb-0 card-body ">
               <h5 class="title"> Address</h5>
               <p class="readmore"><%= nap_space.address %></p>
-              <h5 class="title"> Cost per Hour</h5>
+              <h5 class="title"> Hourly rate:</h5>
               <p class="readmore"> $<%= nap_space.cost_per_hr %></p>
-              <p class="text-muted"> listing was updated <%= nap_space.updated_at%></p>
             </li>
           </ul>
         </div>
