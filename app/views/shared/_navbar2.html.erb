@@ -79,7 +79,11 @@
               </ul>
             </li>
             <%# /* -------------------------------- bookings -------------------------------- */ %>
-            <li> <%= link_to '<i class="fas fa-solid fa-book fa-sm me-1"></i> Bookings'.html_safe,  bookings_path , class: "sub-menu-item" %></li>
+            <% unless current_user.nap_spaces.map(&:bookings).flatten.select(&:requested?).empty? %>
+              <li> <%= link_to "<span class='badge text-bg-danger rounded-4 mb-2'>#{current_user.nap_spaces.map(&:bookings).flatten.select(&:requested?).length}</span> Bookings".html_safe,  bookings_path , class: "sub-menu-item" %></li>
+            <% else %>
+              <li> <%= link_to '<i class="fas fa-solid fa-book fa-sm me-1"></i> Bookings'.html_safe,  bookings_path , class: "sub-menu-item" %></li>
+            <% end %>
           </ul>
           <!--end navigation options menu-->
         </div>
