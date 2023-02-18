@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def upcoming_bookings
+  def bookings_requested
     nap_spaces.map(&:bookings).flatten.select(&:requested?)
   end
 end
