@@ -6,4 +6,8 @@ class User < ApplicationRecord
   has_many :nap_spaces, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def upcoming_bookings
+    nap_spaces.map(&:bookings).flatten.select(&:requested?)
+  end
 end
