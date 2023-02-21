@@ -1,3 +1,22 @@
-<div class="my-5">
-  <%= render "form", nap_space: @nap_space %>
-</div>
+<section class="bg-home d-flex align-items-center">
+  <div class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-5">
+        <div class="me-lg-1">
+          <%= image_tag("login_image.png", class: "img-fluid d-block mx-auto") %>
+          <div class="login img-fluid d-block mx-auto"></div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-7">
+        <div class="card login-page shadow rounded border-0">
+          <div class="card-body">
+            <h4 class="card-title text-center mb-3">List your NapSpace</h4>
+            <div class="row">
+              <%= render "form", nap_space: @nap_space %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
